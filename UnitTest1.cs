@@ -12,18 +12,18 @@ public void Test1()
 }
 }
 
-public interface ISortedSet where T: IComparable
+public interface ISortedSet<T>
 {
 bool add(T value);
 T remove(T value);
 T find(T value);
 }
 
-public interface ITraversable
+public interface ITraversable<T>
 {
-IEnumerable PreOrder();
-IEnumerable InOrder();
-IEnumerable PostOrder();
+IEnumerable<T> PreOrder();
+IEnumerable<T> InOrder();
+IEnumerable<T> PostOrder();
 }
 
 public class Tree : ISortedSet, ITraversable where T :IComparable
