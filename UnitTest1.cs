@@ -51,17 +51,30 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T>
 
     }
 
-    // This is a test to try and get soe=mething to work
-
-
 
     public T remove(T value)
     {
 
     }
 
-    public T find(T value)
+    public T? find(T value)
     {
-
+        TreeNode? W = root;
+        while(W != null)
+        {
+            if(value.CompareTo(W.Value) < 0)
+            {
+                W = W.LeftChild;
+            }
+            else if (value.CompareTo(W.Value) > 0)
+            {
+                W = W.RightChild;
+            }
+            else
+            {
+                return W.Value;
+            }
+        }
+    return W.Value;
     }
 }
