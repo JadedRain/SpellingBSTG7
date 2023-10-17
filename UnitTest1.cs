@@ -14,7 +14,7 @@ public class Tests
     }
 }
 
-public interface ISortedSet<T> : IComparable<T>
+public interface ISortedSet<T> where T: IComparable<T>
 {
     bool add(T value);
     T remove(T value);
@@ -51,14 +51,9 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T>
 
     }
 
-    public int size(TreeNode<T> node)
-    {
-        if (node == null)
-        {
-            return 0;
-        }
-        return 1 + size(node.LeftChild) + size(node.RightChild);
-    }
+    // This is a test to try and get soe=mething to work
+
+
 
     public T remove(T value)
     {
