@@ -2,43 +2,43 @@ namespace SpellingBSTG7;
 
 public class Tests
 {
-    [SetUp]
-    public void Setup()
-    {
-    }
-
-    [Test]
-    public void Test1()
-    {
-        Assert.Pass();
-    }
-}
-
-public interface ISortedSet<T> where T: IComparable<T>
+[SetUp]
+public void Setup()
 {
-    bool add(T value);
-    T remove(T value);
-    T find(T value);
 }
 
-public interface ITraversable<T>
+[Test]
+public void Test1()
 {
-    IEnumerable<T> PreOrder();
-    IEnumerable<T> InOrder();
-    IEnumerable<T> PostOrder();
+    Assert.Pass();
+}
 }
 
-public class Tree<T> : ISortedSet<T>, ITraversable<T>
+public interface ISortedSet where T: IComparable
+{
+bool add(T value);
+T remove(T value);
+T find(T value);
+}
+
+public interface ITraversable
+{
+IEnumerable PreOrder();
+IEnumerable InOrder();
+IEnumerable PostOrder();
+}
+
+public class Tree : ISortedSet, ITraversable where T :IComparable
 {
     TreeNode? root = null;
     int size = 0;
 
-    class TreeNode<T>
+    public class TreeNode<T>
     {
         public T Value;
-        public Tree<T> LeftChild;
-        public Tree<T> RightChild;
-        TreeNode(T value, Tree<T> leftChild, Tree<T> rightChild)
+        public TreeNode<T>? LeftChild;
+        public TreeNode<T>? RightChild;
+        public TreeNode(T value, TreeNode<T>? leftChild = null, TreeNode<T>? rightChild = null)
         {
             Value = value;
             LeftChild = leftChild;
@@ -48,7 +48,15 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T>
 
     public bool add(T value)
     {
-
+        if(size == 0)
+        {
+            root = new TreeNode<T>(value);
+            size++;
+        }
+        else if (value.CompareTo(root.Value) < 0)
+        {
+            
+        }
     }
 
 
@@ -59,7 +67,7 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T>
 
     public T? find(T value)
     {
-        TreeNode? W = root;
+        TreeNode<T>? W = root;
         while(W != null)
         {
             if(value.CompareTo(W.Value) < 0)
@@ -76,5 +84,20 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T>
             }
         }
     return W.Value;
+    }
+
+    public IEnumerable<T> PreOrder()
+    {
+        
+    }
+
+    public IEnumerable<T> InOrder()
+    {
+        
+    }
+
+    public IEnumerable<T> PostOrder()
+    {
+        
     }
 }
