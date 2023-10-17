@@ -2,15 +2,13 @@ namespace SpellingBSTG7;
 
 public class Tests
 {
-[SetUp]
-public void Setup()
-{
-}
 
 [Test]
 public void Test1()
 {
-    Assert.Pass();
+    Tree testTree = new Tree();
+    testTree.add(5);
+    Assert.AreEqual(5, testTree.root.Value);
 }
 }
 
@@ -53,10 +51,33 @@ public class Tree : ISortedSet, ITraversable where T :IComparable
             root = new TreeNode<T>(value);
             size++;
         }
-        else if (value.CompareTo(root.Value) < 0)
+        TreeNode<T> current = root;
+        TreeNode<T> parent = null;
+        while(value.CompareTo(current) != 0)
         {
-            
+            parent = current;
+
+            if (value.CompareTo(current.Value) < 0)
+            {
+                current = current.LeftChild;
+
+                if (current == null)
+                {
+                    parent.LeftChild = new TreeNode<T>(value);
+                    size++;
+                    return true;
+                }
+            }
+            else{
+                current = current.RightChild;
+                if (current == null)
+                {
+                    parent.RightChild = new TreeNode<T>(value);
+                    return true;
+                }
+            }
         }
+        return false;
     }
 
 
@@ -86,18 +107,42 @@ public class Tree : ISortedSet, ITraversable where T :IComparable
     return W.Value;
     }
 
-    public IEnumerable<T> PreOrder()
+    public IEnumerable<T> PreOrder(Action<T> visitor)
     {
-        
+        visitor(Value);
+        if ( leftChild != null)
+        {
+            PreOrder(visitor);
+        }
+        if ( rightChild != null)
+        {
+            PreOrder(visitor);
+        }
     }
 
-    public IEnumerable<T> InOrder()
+    public IEnumerable<T> InOrder(Action<T> visitor)
     {
-        
+        if(leftChild != null)
+        {
+            InOrder(visitor);
+        }
+        visitor(Value);
+        if( rightChild != null)
+        {
+            InOrder(visitor);
+        }
     }
 
-    public IEnumerable<T> PostOrder()
+    public IEnumerable<T> PostOrder(Action<T> visitor)
     {
-        
+        if(leftChild != null)
+        {
+            PostOrder(visitor);
+        }
+        if( rightChild != null)
+        {
+            PostOrder(visitor);
+        }
+        visitor(Value);
     }
 }

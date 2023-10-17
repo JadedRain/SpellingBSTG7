@@ -1,0 +1,5 @@
+C:\Users\logan.douglas\Desktop\SpellingBSTG7\obj\Debug\net7.0\SpellingBSTG7.csproj.AssemblyReference.cache
+C:\Users\logan.douglas\Desktop\SpellingBSTG7\obj\Debug\net7.0\SpellingBSTG7.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\logan.douglas\Desktop\SpellingBSTG7\obj\Debug\net7.0\SpellingBSTG7.AssemblyInfoInputs.cache
+C:\Users\logan.douglas\Desktop\SpellingBSTG7\obj\Debug\net7.0\SpellingBSTG7.AssemblyInfo.cs
+C:\Users\logan.douglas\Desktop\SpellingBSTG7\obj\Debug\net7.0\SpellingBSTG7.csproj.CoreCompileInputs.cache
