@@ -26,9 +26,9 @@ IEnumerable<T> InOrder();
 IEnumerable<T> PostOrder();
 }
 
-public class Tree : ISortedSet, ITraversable where T :IComparable
+public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
 {
-    TreeNode? root = null;
+    public TreeNode<T>? root = null;
     int size = 0;
 
     public class TreeNode<T>
@@ -83,7 +83,7 @@ public class Tree : ISortedSet, ITraversable where T :IComparable
 
     public T remove(T value)
     {
-
+        return value;
     }
 
     public T? find(T value)
@@ -107,42 +107,18 @@ public class Tree : ISortedSet, ITraversable where T :IComparable
     return W.Value;
     }
 
-    public IEnumerable<T> PreOrder(Action<T> visitor)
+    public IEnumerable<T> PreOrder()
     {
-        visitor(Value);
-        if ( leftChild != null)
-        {
-            PreOrder(visitor);
-        }
-        if ( rightChild != null)
-        {
-            PreOrder(visitor);
-        }
+        throw new NotImplementedException();
     }
 
-    public IEnumerable<T> InOrder(Action<T> visitor)
+    public IEnumerable<T> InOrder()
     {
-        if(leftChild != null)
-        {
-            InOrder(visitor);
-        }
-        visitor(Value);
-        if( rightChild != null)
-        {
-            InOrder(visitor);
-        }
+        throw new NotImplementedException();
     }
 
-    public IEnumerable<T> PostOrder(Action<T> visitor)
+    public IEnumerable<T> PostOrder()
     {
-        if(leftChild != null)
-        {
-            PostOrder(visitor);
-        }
-        if( rightChild != null)
-        {
-            PostOrder(visitor);
-        }
-        visitor(Value);
+        throw new NotImplementedException();
     }
 }
