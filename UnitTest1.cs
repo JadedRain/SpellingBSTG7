@@ -6,9 +6,13 @@ public class Tests
 [Test]
 public void Test1()
 {
-    Tree testTree = new Tree();
+    Tree<int> testTree = new Tree<int>();
     testTree.add(5);
-    Assert.AreEqual(5, testTree.root.Value);
+    testTree.add(7);
+    int actual = 5;
+    Assert.That(actual, Is.EqualTo(testTree.find(actual)));
+    int actual_2 = 7;
+    Assert.That(actual_2, Is.EqualTo(testTree.remove(actual_2)));
 }
 }
 
@@ -29,7 +33,7 @@ IEnumerable<T> PostOrder();
 public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
 {
     public TreeNode<T>? root = null;
-    int size = 0;
+    public int size = 0;
 
     public class TreeNode<T>
     {
@@ -50,10 +54,11 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
         {
             root = new TreeNode<T>(value);
             size++;
+            return true;
         }
         TreeNode<T> current = root;
         TreeNode<T> parent = null;
-        while(value.CompareTo(current) != 0)
+        while(value.CompareTo(current.Value) != 0)
         {
             parent = current;
 
@@ -73,6 +78,7 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
                 if (current == null)
                 {
                     parent.RightChild = new TreeNode<T>(value);
+                    size++;
                     return true;
                 }
             }
@@ -83,6 +89,35 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
 
     public T remove(T value)
     {
+        TreeNode<T> current = root;
+        TreeNode<T> parent = null;
+        while(value.CompareTo(current.Value) != 0)
+        {
+            parent = current;
+
+            if (value.CompareTo(current.Value) < 0)
+            {
+                current = current.LeftChild;
+
+                if (current == null)
+                {
+                    T temp = parent.LeftChild.Value;
+                    parent.LeftChild = null;
+                    size--;
+                    return temp;
+                }
+            }
+            else{
+                current = current.RightChild;
+                if (current == null)
+                {
+                    T temp = parent.RightChild.Value;
+                    parent.RightChild = null;
+                    size--;
+                    return temp;
+                }
+            }
+        }
         return value;
     }
 
