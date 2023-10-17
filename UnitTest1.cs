@@ -30,6 +30,16 @@ IEnumerable<T> InOrder();
 IEnumerable<T> PostOrder();
 }
 
+public static class Spelling<T>
+{
+    static public List<string> Fix(List<string> inputWords)
+    {
+        Tree<string> tree = new Tree<string>(); 
+        List<string> outputWords = new List<string>();
+        return outputWords;
+    }
+}
+
 public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
 {
     public TreeNode<T>? root = null;
