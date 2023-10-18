@@ -1,46 +1,67 @@
+using System.ComponentModel;
+using System.Diagnostics.Contracts;
+
 namespace SpellingBSTG7;
 
 public class Tests
 {
 
-[Test]
-public void Test1()
-{
-    Tree<int> testTree = new Tree<int>();
-    testTree.add(5);
-    testTree.add(7);
-    int actual = 5;
-    Assert.That(actual, Is.EqualTo(testTree.find(actual)));
-    int actual_2 = 7;
-    Assert.That(actual_2, Is.EqualTo(testTree.remove(actual_2)));
-}
+    [Test]
+    public void Test1()
+    {
+        Tree<int> testTree = new Tree<int>();
+        testTree.add(5);
+        testTree.add(7);
+        int actual = 5;
+        Assert.That(actual, Is.EqualTo(testTree.find(actual)));
+        int actual_2 = 7;
+        Assert.That(actual_2, Is.EqualTo(testTree.remove(actual_2)));
+    }
 }
 
 public interface ISortedSet<T>
 {
-bool add(T value);
-T remove(T value);
-T find(T value);
+    bool add(T value);
+    T remove(T value);
+    T find(T value);
 }
 
 public interface ITraversable<T>
 {
-IEnumerable<T> PreOrder();
-IEnumerable<T> InOrder();
-IEnumerable<T> PostOrder();
+    IEnumerable<T> PreOrder();
+    IEnumerable<T> InOrder();
+    IEnumerable<T> PostOrder();
 }
 
 public static class Spelling<T>
 {
     static public List<string> Fix(List<string> inputWords)
     {
-        Tree<string> tree = new Tree<string>(); 
+        Tree<string> tree = new Tree<string>();
         List<string> outputWords = new List<string>();
-        return outputWords;
+        int AlreadyInTree = 0;
+        int NotInTree = 0;
+
+        for (int i = 0; i < inputWords.Count(); i++)
+        {
+                if (tree.add(inputWords[i]))
+                {
+                    NotInTree++;
+                    if (NotInTree % 3 == 0 && i != 0)
+                    {
+                        
+                    }
+                }
+                else
+                {
+                    AlreadyInTree++;
+                }
+        }
+        return inputWords;
     }
 }
 
-public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
+public class Tree<T> : ISortedSet<T>, ITraversable<T> where T : IComparable
 {
     public TreeNode<T>? root = null;
     public int size = 0;
@@ -60,7 +81,7 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
 
     public bool add(T value)
     {
-        if(size == 0)
+        if (size == 0)
         {
             root = new TreeNode<T>(value);
             size++;
@@ -68,7 +89,7 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
         }
         TreeNode<T> current = root;
         TreeNode<T> parent = null;
-        while(value.CompareTo(current.Value) != 0)
+        while (value.CompareTo(current.Value) != 0)
         {
             parent = current;
 
@@ -83,7 +104,8 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
                     return true;
                 }
             }
-            else{
+            else
+            {
                 current = current.RightChild;
                 if (current == null)
                 {
@@ -101,7 +123,7 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
     {
         TreeNode<T> current = root;
         TreeNode<T> parent = null;
-        while(value.CompareTo(current.Value) != 0)
+        while (value.CompareTo(current.Value) != 0)
         {
             parent = current;
 
@@ -117,7 +139,8 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
                     return temp;
                 }
             }
-            else{
+            else
+            {
                 current = current.RightChild;
                 if (current == null)
                 {
@@ -134,9 +157,9 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
     public T? find(T value)
     {
         TreeNode<T>? W = root;
-        while(W != null)
+        while (W != null)
         {
-            if(value.CompareTo(W.Value) < 0)
+            if (value.CompareTo(W.Value) < 0)
             {
                 W = W.LeftChild;
             }
@@ -149,7 +172,7 @@ public class Tree<T> : ISortedSet<T>, ITraversable<T> where T :IComparable
                 return W.Value;
             }
         }
-    return W.Value;
+        return W.Value;
     }
 
     public IEnumerable<T> PreOrder()

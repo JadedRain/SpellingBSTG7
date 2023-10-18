@@ -988,23 +988,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\logan.douglas\\.nuget\\packages\\": {},
+    "C:\\Users\\erin.bench\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\logan.douglas\\Desktop\\SpellingBSTG7\\SpellingBSTG7.csproj",
+      "projectUniqueName": "C:\\Users\\erin.bench\\Documents\\SpellingBSTG7\\SpellingBSTG7.csproj",
       "projectName": "SpellingBSTG7",
-      "projectPath": "C:\\Users\\logan.douglas\\Desktop\\SpellingBSTG7\\SpellingBSTG7.csproj",
-      "packagesPath": "C:\\Users\\logan.douglas\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\logan.douglas\\Desktop\\SpellingBSTG7\\obj\\",
+      "projectPath": "C:\\Users\\erin.bench\\Documents\\SpellingBSTG7\\SpellingBSTG7.csproj",
+      "packagesPath": "C:\\Users\\erin.bench\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\erin.bench\\Documents\\SpellingBSTG7\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\logan.douglas\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\erin.bench\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
